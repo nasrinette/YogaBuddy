@@ -14,9 +14,9 @@ export default function Card({title, subtit, features=[]}) {
        
 
         {features.map((feature)=>(
-            <div>
+            <div key={(Math.random() + 1).toString(36).substring(7)}>
             <hr className='border-gradient1 border-1 rounded '/>
-            <p className='text-dark text-xl p-1'>{feature}</p> 
+            <p  className='text-dark text-xl p-1'>{feature}</p> 
             </div>
         ))}
 

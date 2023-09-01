@@ -11,7 +11,7 @@ export default {
     dark: '#392F2B',
     gradient1: '#C55B2B',
     gradient2: '#DA893E',
-    grayish: '#968B7B',
+    grayish: '#70685c',
    }
   },
   plugins: [],

@@ -67,22 +67,19 @@ function Home (){
           <AppButton>Explore courses</AppButton>
         </section>
 
-{/* this section is not responsive */}
-        <section className='flex items-center justify-center p-14'> 
-        <div className='flex flex-col mx-6'>
+        <section className='flex flex-wrap items-center justify-center p-14'> 
+        <div className='max-xl:text-center flex flex-col mx-6 xl:w-1/2'>
           <p className='text-3xl font-bold text-gradient1'>Choose Your Plan</p>
-          <h1 className='text-5xl font-bold text-dark mt-6'>The great place to start your journey within</h1>
+          <h1 className='text-5xl  font-bold text-dark mt-6'>The great place to start your journey within</h1>
           <p className='text-2xl	text-gradient1 mt-6'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur purus hac turpis feugiat vulputate. Purus dui mattis maecenas ac velit et egestas pellentesque scelerisque.</p>
         </div>
 
-          <div className='flex'>
               {
           cards.map((card)=>(
     
             <Card key={card.title} title={card.title} subtit={card.subtit} features={card.features}/>
           ))
         } 
-          </div>
   
         </section>
         <Footer />

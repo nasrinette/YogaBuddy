@@ -7,14 +7,14 @@ import React, { useState, useEffect } from "react";
 const Navbar = () => {
   let Links =[
     {name:"Home",link:"/"},
-    {name:"About us",link:"/about"},
     {name:"Course",link:"/course"},
+    {name:"About us",link:"/about"},
   ];
   const [open, setOpen] = useState(false);
 
   return (
     
-    <header className=' w-full fixed top-0 left-0 text-light'>
+    <nav className=' w-full fixed top-0 left-0 text-light'>
       <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
 
         <Link to="/" className='font-bold text-2xl cursor-pointer flex items-center'>
@@ -38,7 +38,7 @@ const Navbar = () => {
         }
       </ul>
       </div>
-    </header>
+    </nav>
   );
 };
 
