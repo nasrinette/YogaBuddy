@@ -1,74 +1,42 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from '../pages/Home';
-import Course from '../pages/Course';
-import About from '../pages/About';
+import { Link } from 'react-router-dom';
 
 import React, { useState, useEffect } from "react";
-import "./navbar.scss";
 
-import { AiFillCloseCircle } from "react-icons/ai";
-import { CgMenuGridO } from "react-icons/cg";
+//color must change while scrolling
 
 const Navbar = () => {
-  const [active, setActive] = useState("navbar");
-  const [activeHeader, setAcH] = useState("header");
-
-  const showNavBar = () => {
-    setActive("navbar activeNavbar");
-  };
-
-  const hideNavbar = () => {
-    setActive("navbar");
-  };
-
-  useEffect(() => {
-    const addBg = () => {
-      if (window.scrollY >= 10) setAcH("header activeH");
-      else setAcH("header");
-    };
-    window.addEventListener("scroll", addBg);
-    return () => window.removeEventListener("scroll", addBg);
-  }, []);
+  let Links =[
+    {name:"Home",link:"/"},
+    {name:"About us",link:"/about"},
+    {name:"Course",link:"/course"},
+  ];
+  const [open, setOpen] = useState(false);
 
   return (
     
-    <header className={activeHeader}>
-      <div className="logoDiv">
-        <h1 className="logo">
-          <p onClick={() => scrollTo("home")}>
-            Yoga Buddy
-          </p>
-        </h1>
-      </div>
-      <div className={active}>
-      <Router>
-        <ul className="navLists">
-          <li className="navItem" onClick={() => scrollTo("home")}>
-          <Link to="/">Home</Link>
-          </li>
-          <li className="navItem" onClick={() => scrollTo("skills")}>
-          <Link to="/about">About Us</Link>
-          </li>
-          <li className="navItem" onClick={() => scrollTo("projects")}>
-          <Link to="/course">Course</Link>
-          </li>
-        </ul>
-        <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/course' element={<Course />} />
-          </Routes>
-      </Router>
+    <header className=' w-full fixed top-0 left-0 text-light'>
+      <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
 
-        
+        <Link to="/" className='font-bold text-2xl cursor-pointer flex items-center'>
+        <span className='text-3xl mr-1 pt-2'>
+        <ion-icon name="sparkles-sharp"></ion-icon>        
+        </span>
+          Yoga Buddy
+        </Link>
 
-        <div onClick={hideNavbar} className="closeNavbar">
-          <AiFillCloseCircle className="icon" />
-        </div>
+        <div onClick={()=>setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'>
+      <ion-icon name={open ? 'close':'menu'}></ion-icon>
       </div>
 
-      <div onClick={showNavBar} className="toggleNavbar">
-        <CgMenuGridO className="icon" />
+      <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ':'top-[-490px]'}`}>
+        {
+          Links.map((link)=>(
+            <li key={link.name} className='md:ml-8 text-xl md:my-0 my-7'>
+              <Link to={link.link} className='text-slate-100 hover:text-grayish duration-500'>{link.name}</Link>
+            </li>
+          ))
+        }
+      </ul>
       </div>
     </header>
   );
