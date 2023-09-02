@@ -5,6 +5,25 @@ import React, { useState, useEffect } from "react";
 //color must change while scrolling
 
 const Navbar = () => {
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > 300) {
+            setScrolling(true);
+        } else {
+            setScrolling(false);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+
   let Links =[
     {name:"Home",link:"/"},
     {name:"Course",link:"/course"},
@@ -14,7 +33,7 @@ const Navbar = () => {
 
   return (
     
-    <nav className=' w-full fixed top-0 left-0 text-light'>
+<nav  style={{ zIndex: '10000000 !important' }} className={`z-10000 w-full fixed top-0 left-0 text-light ${scrolling ? 'bg-dark' : 'bg-transparent'}`}>
       <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
 
         <Link to="/" className='font-bold text-2xl cursor-pointer flex items-center'>
