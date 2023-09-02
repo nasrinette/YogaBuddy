@@ -9,9 +9,17 @@ import AppButton from '../components/AppButton';
 import picture from '../assets/buttonTonav.png'
 import Card from '../components/Card';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 
 function Home (){
+
+  let navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/course');
+  }
+
   let reasons = [
     {source: reason1, title:"Keep healthy"},
     {source: reason2, title:"Experience the thrill"},
@@ -64,7 +72,7 @@ function Home (){
 
           }}>
           <p className='text-center text-3xl font-bold text-light mb-4'>{"Learn ancient yoga practices easily with Yoga Buddy".toUpperCase()}</p>
-          <AppButton>Explore courses</AppButton>
+          <AppButton onClick={handleButtonClick}>Explore courses</AppButton>
         </section>
 
         <section className='flex flex-wrap items-center justify-center p-14'> 
